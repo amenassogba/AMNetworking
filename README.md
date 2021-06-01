@@ -1,3 +1,4 @@
 # AMNetworking
 
-A description of this package.
+Simple wrapper on top of URLSession & DataTask to execute HTTP requests.
+

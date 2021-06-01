@@ -1,6 +1,5 @@
 //
-//  NetworkManager.swift
-//  Meetmate
+//  RestClient.swift
 //
 //  Created by Amen ASSOGBA on 07/05/2021.
 //  Copyright © 2021  Amen IO. All rights reserved.
@@ -16,7 +15,7 @@ public protocol Client {
 
 }
 
-public class NetworkManager: Client {
+public class RestClient: Client {
   
   private let environment: EnvironmentProtocol
   private let networkSession: NetworkSessionProtocol
@@ -32,11 +31,7 @@ public class NetworkManager: Client {
       completion(.failure(NetworkError.invalidRequest))
       return nil
     }
-    
-    //Could inject header additional values here
-    
       
-    // Create a URLSessionTask to execute the URLRequest.
     let task = networkSession.dataTask(with: urlRequest, completionHandler: { [weak self] (data, urlResponse, error) in
       
       guard let urlResponse = urlResponse as? HTTPURLResponse else {
@@ -44,7 +39,6 @@ public class NetworkManager: Client {
         return
       }
       
-      // Verify the HTTP status code.
       let result = self?.handleErrors(data: data, urlResponse: urlResponse, error: error)
       switch result {
         case .success(let data):
@@ -59,31 +53,15 @@ public class NetworkManager: Client {
           completion(.failure(NetworkError.noData))
       }
       
-      
-      
     })
-    // Start the task.
+    
     task?.resume()
     return task
     
     
   }
   
-//  private func parse(data: Data?) -> Result<Any, Error> {
-//    guard let data = data else {
-//      return .failure(NetworkError.invalidResponse)
-//    }
-//
-//    do {
-//      let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-//      return .success(json)
-//    } catch (let exception) {
-//      return .failure(NetworkError.parseError(exception.localizedDescription))
-//    }
-//  }
-//
-  
-  //Create Error Handler
+
   private func handleErrors(data: Data?, urlResponse: HTTPURLResponse, error: Error?) -> Result<Data, Error> {
     switch urlResponse.statusCode {
       case 200...299:

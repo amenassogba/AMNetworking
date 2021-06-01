@@ -1,6 +1,5 @@
 //
 //  Request.swift
-//  Meetmate
 //
 //  Created by Amen ASSOGBA on 06/05/2021.
 //  Copyright © 2021  Amen IO. All rights reserved.
@@ -48,11 +47,11 @@ extension Request {
   }
   
   private var queryItems: [URLQueryItem]? {
-    // Chek if it is a GET method.
+    
     guard method == .get, let parameters = parameters else {
       return nil
     }
-    // Convert parameters to query items.
+    
     return parameters.map { (key: String, value: Any?) -> URLQueryItem in
       let valueString = String(describing: value)
       return URLQueryItem(name: key, value: valueString)
@@ -60,7 +59,7 @@ extension Request {
   }
   
   private var body: Data? {
-    guard [.post, .put, .patch].contains(method), let parameters = parameters else { return nil }
+    guard [.post, .put].contains(method), let parameters = parameters else { return nil }
     var jsonBody: Data?
     
     do {

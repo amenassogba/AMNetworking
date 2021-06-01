@@ -1,6 +1,5 @@
 //
 //  DataHandler.swift
-//  Meetmate
 //
 //  Created by Amen ASSOGBA on 07/05/2021.
 //  Copyright © 2021  Amen IO. All rights reserved.
@@ -9,13 +8,12 @@
 import Foundation
 
 extension Decodable {
-  static func decode(from data: Data) -> Result<Self, Error> {
+ public static func decode(from data: Data) -> Result<Self, Error> {
     do {
       let decodable = try JSONDecoder().decode(Self.self, from: data)
       return .success(decodable)
     }
     catch let error{
-      print("error: \(error)")
       return .failure(NetworkError.parseError(error.localizedDescription))
     }
     
