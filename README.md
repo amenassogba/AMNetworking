@@ -1,3 +1,4 @@
 # AMNetworking
 
-A description of this package.
+A simple networking package on top of URLSession & DataTask to execute HTTP requests.
+
