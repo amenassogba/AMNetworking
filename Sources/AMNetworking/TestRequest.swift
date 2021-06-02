@@ -8,11 +8,11 @@
 import Foundation
 
 
-struct TestRequest: Request  {
-  var path: String { return "/character"}
-  var method: RequestMethod { return .get}
-  var headers: ReaquestHeaders?
-  var parameters: RequestParameters?
-  var progressHandler: ProgressHandler?
+public struct TestRequest: Request  {
+  public var path: String { return "/character"}
+  public var method: RequestMethod { return .get}
+  public var headers: ReaquestHeaders?
+  public var parameters: RequestParameters?
+  public var progressHandler: ProgressHandler?
   
 }
