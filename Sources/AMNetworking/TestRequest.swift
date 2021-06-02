@@ -9,6 +9,9 @@ import Foundation
 
 
 public struct TestRequest: Request  {
+  
+  public init() {}
+  
   public var path: String { return "/character"}
   public var method: RequestMethod { return .get}
   public var headers: ReaquestHeaders?

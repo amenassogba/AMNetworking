@@ -21,7 +21,7 @@ extension Decodable {
 }
 
 extension Encodable {
-  func toJSONDictionary() -> [String: Any] {
+  public func toJSONDictionary() -> [String: Any] {
     guard let data = try? JSONEncoder().encode(self),
           let dictionary = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return [:] }
     return dictionary
@@ -29,7 +29,7 @@ extension Encodable {
 }
 
 extension Data {
-  func toJSON() -> Any? {
+  public func toJSON() -> Any? {
     do {
       return try JSONSerialization.jsonObject(with: self, options: .mutableContainers)
     } catch {
