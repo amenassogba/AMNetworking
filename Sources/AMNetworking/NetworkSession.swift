@@ -15,7 +15,7 @@ public protocol NetworkSessionProtocol {
   
 }
 
-class NetworkSession: NSObject {
+public class NetworkSession: NSObject {
   
   var session: URLSession!
   private typealias ProgressAndCompletionHandlers = (progress: ProgressHandler?, completion: ((URL?, URLResponse?, Error?) -> Void)?)
